@@ -1,5 +1,4 @@
 <script lang="ts">
-    import "bulma/css/bulma.css";
 
     async function handleSubmit(event: Event) {
         event.preventDefault();
@@ -29,56 +28,6 @@
         }
     }
 </script>
-
-<nav class="navbar mb-5" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="http://127.0.0.1:8000/">
-            <img src="/favicon.png" alt="Logo" />
-        </a>
-
-        <!-- svelte-ignore a11y-missing-attribute -->
-        <a
-            role="button"
-            class="navbar-burger"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbar"
-        >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
-
-    <div id="navbar" class="navbar-menu" style="padding-top: 5px">
-        <div class="navbar-start">
-            <a class="navbar-item" href="http://127.0.0.1:8000/"> Home </a>
-            <a class="navbar-item" href="/about"> API </a>
-            <a class="navbar-item" href="/contact"> Contact </a>
-            <a href="/pricing" class="navbar-item"> Pricing </a>
-        </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a
-                        class="button is-primary"
-                        href="http://127.0.0.1:8000/signup"
-                    >
-                        <strong>Sign up</strong>
-                    </a>
-                    <a
-                        class="button is-light"
-                        href="http://127.0.0.1:8000/login"
-                    >
-                        Log in
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
 
 <main>
     <div class="columns">
@@ -141,6 +90,7 @@
     </div>
 </main>
 
+
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
     @import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
@@ -167,3 +117,4 @@
         font-weight: 400;
     }
 </style>
+
