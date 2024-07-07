@@ -17,7 +17,7 @@
                 const targetElement = document.getElementById(target);
 
                 el.classList.toggle("is-active");
-                isActive.update((value) => !value);
+                isActive.update((value: any) => !value);
                 if (targetElement) {
                     targetElement.classList.toggle("is-active");
                 }

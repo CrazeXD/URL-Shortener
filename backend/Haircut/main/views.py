@@ -2,9 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from rest_framework.parsers import JSONParser
-from .models import URL
-from .serializers import UserRegisterSerializer
-from rest_framework import status
+from .models import URL, User
 
 @csrf_exempt
 @require_http_methods(["GET"])
@@ -21,8 +19,11 @@ def site_view(request, alias):
 def registration_api_view(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = UserRegisterSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        username = data.get('username')
+        password = data.get('password')
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+        email = data.get('email')
+        user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email=email)
+        user.save()
+        return JsonResponse({'message': 'User created'}, status=201)

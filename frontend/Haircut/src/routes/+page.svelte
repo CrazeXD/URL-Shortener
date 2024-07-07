@@ -1,8 +1,7 @@
-<script lang="ts">
-
-    async function handleSubmit(event: Event) {
+<script>
+    async function handleSubmit(event) {
         event.preventDefault();
-        const form = event.target as HTMLFormElement;
+        const form = event.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
