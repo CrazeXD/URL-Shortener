@@ -1,3 +1,29 @@
+<script lang="ts">
+    async function handleSubmit(event: Event) {
+        const form = event.target as HTMLFormElement;
+        const endpoint = "http://127.0.0.1:8000/signup/"
+        const formData = new FormData(form);
+        const formObject: { [key: string]: string } = {};
+        formData.forEach((value, key) => { formObject[key] = value as string; });
+        const jsonBody = JSON.stringify(formObject);
+        console.log(jsonBody);
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: jsonBody,
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+        } else {
+            console.error("HTTP-Error: " + response.status);
+        }
+    }
+</script>
+
 <section class="hero is-fullheight-with-navbar">
     <div class="hero-body">
         <div class="container">
@@ -5,8 +31,7 @@
                 <div class="column is-5-desktop is-offset-3-desktop">
                     <div class="box">
                         <h1 class="title has-text-centered jura">Sign Up</h1>
-                        <form class="form">
-                            <!--on:submit|preventDefault={handleSubmit}-->
+                        <form class="form" on:submit|preventDefault={handleSubmit}>
                             <div class="field">
                                 <label class="label changa" for="username">Username</label>
                                 <div class="control" id="username">
@@ -26,7 +51,7 @@
                                     <input
                                         class="input"
                                         type="text"
-                                        name="firstname"
+                                        name="first_name"
                                         placeholder="Enter your first name"
                                         maxlength="20"
                                         required
@@ -34,12 +59,12 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="label changa" for="firstname">Last Name</label>
+                                <label class="label changa" for="lastname">Last Name</label>
                                 <div class="control" id="lastname">
                                     <input
                                         class="input"
                                         type="text"
-                                        name="lastname"
+                                        name="last_name"
                                         placeholder="Enter your last name"
                                         maxlength="20"
                                         required
