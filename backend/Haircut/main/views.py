@@ -30,6 +30,9 @@ def login(request):
 
 def site(request, alias):
     if request.method == 'GET':
-        url = URL.objects.get(alias=alias).url
-        return JsonResponse({'url': url})
-    return redirect('/')
+        try:
+            url = URL.objects.get(alias=alias).url
+            return JsonResponse({'url': url})
+        except URL.DoesNotExist:
+            return JsonResponse({'error': 'URL not found'}, status=404)
+    return JsonResponse({'error': 'Invalid request'}, status=405)
