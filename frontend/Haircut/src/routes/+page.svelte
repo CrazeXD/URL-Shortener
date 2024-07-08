@@ -1,4 +1,8 @@
 <script>
+    import { onMount } from "svelte";
+    let current_url = "";
+    onMount(() => current_url = window.location.href);
+    // @ts-ignore
     async function handleSubmit(event) {
         event.preventDefault();
         const form = event.target;
@@ -19,7 +23,7 @@
             if (result.error) {
                 alert(result.error);
             } else {
-                alert(`Shortened URL: ${result.alias}`);
+                alert(`Shortened URL: ${current_url}${result.alias}`);
             }
         } catch (error) {
             console.error("Error:", error);
