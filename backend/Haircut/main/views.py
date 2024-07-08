@@ -10,6 +10,8 @@ def site_view(request, alias):
     if request.method == 'GET':
         try:
             url = URL.objects.get(alias=alias).url
+            if not url.startswith('http'):
+                url = f'http://{url}'
             return JsonResponse({'url': url})
         except URL.DoesNotExist:
             return JsonResponse({'error': 'URL not found'}, status=404)
